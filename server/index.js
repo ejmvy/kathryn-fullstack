@@ -1,0 +1,53 @@
+const config = require('config');
+// const Joi = require('joi');
+// Joi.objectId = require('joi-objectid')(Joi);
+const mongoose = require('mongoose');
+const categories = require('./routes/categories');
+const customers = require('./routes/customers');
+const products = require('./routes/products');
+const orders = require('./routes/orders');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
+const stats = require('./routes/stats');
+const payments = require('./routes/payments');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const app = express();
+
+
+// need to set this key before calling node index.js
+
+// export kathryn_jwtPrivateKey=mySecureKey
+if (!config.get('jwtPrivateKey')) {
+  console.log('Error: JWT is not defined');
+  process.exit(1); // 0 is success, anything else is failure
+}
+
+
+
+mongoose.connect('mongodb://localhost/kathryn', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch(err => console.error('Could not connect to MongoDB...'));
+
+app.use(helmet());
+app.use(cors());
+app.options('*', cors());
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+
+app.use(express.json());
+app.use('/api/categories', categories);
+app.use('/api/customers', customers);
+app.use('/api/products', products);
+app.use('/api/payments', payments);
+app.use('/api/orders', orders);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
+app.use('/api/stats', stats);
+
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Listening on port ${port}...`));
