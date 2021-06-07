@@ -16,7 +16,9 @@
     <div class="p-3 md:flex md:flex-col md:w-3/4 md:m-auto">
       <div class="mt-10" v-if="!getUserOrders.length">
         <p class="text-xs text-gray-500">There are no orders to show</p>
-        <button class="btn-green btn-sm mt-10">Start Shopping now!</button>
+        <router-link to="/shop">
+          <button class="btn-green btn-sm mt-10">Start Shopping now!</button>
+        </router-link>
       </div>
 
       <div>
