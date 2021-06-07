@@ -33,8 +33,8 @@
               :key="item"
             >
               <td class="py-6 text-left pl-5">{{ item.customer.name }}</td>
-              <td class="py-6">{{ item.products.length }}</td>
-              <td class="py-6">{{ item.paymentTotal }}</td>
+              <td class="py-6">{{ getQuantity(item.products) }}</td>
+              <td class="py-6">{{ item.cartTotal }}</td>
               <td class="py-6">{{ convertDate(item.orderDate) }}</td>
               <td class="py-6">
                 <input
@@ -148,6 +148,9 @@ export default {
             this.closePopup();
           });
       });
+    },
+    getQuantity(products) {
+      return products.reduce((acc, cur) => cur.qty + acc, 0);
     },
   },
   computed: {
