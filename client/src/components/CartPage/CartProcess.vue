@@ -49,14 +49,14 @@
           <div class="text-xxs mt-3 uppercase">Confirm Order</div>
         </div>
       </div>
-      <div class="w-full bg-gray-200">
+      <div class="w-full h-screen bg-gray-200">
         <div class="w-full md:w-2/3 md:m-auto md:mb-10">
-          <AddressDetails v-if="getPaymentStep == 1"> </AddressDetails>
-          <ConfirmOrder
+          <AddressDetails class='slowShow' v-if="getPaymentStep == 1"> </AddressDetails>
+          <ConfirmOrder class='slowShow'
             v-if="getPaymentStep == 2"
             @orderComplete="saveOrder"
           ></ConfirmOrder>
-          <OrderConfirmation
+          <OrderConfirmation class='slowShow'
             v-if="getPaymentStep == 3"
             :orderDetails="newOrder"
           ></OrderConfirmation>
