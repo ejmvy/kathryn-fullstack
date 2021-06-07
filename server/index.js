@@ -1,9 +1,8 @@
+require('dotenv').config();
 const config = require('config');
-// const Joi = require('joi');
-// Joi.objectId = require('joi-objectid')(Joi);
+
 const mongoose = require('mongoose');
 const categories = require('./routes/categories');
-const customers = require('./routes/customers');
 const products = require('./routes/products');
 const orders = require('./routes/orders');
 const users = require('./routes/users');
@@ -26,7 +25,7 @@ if (!config.get('jwtPrivateKey')) {
 
 
 
-mongoose.connect('mongodb://localhost/kathryn', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: true })
   .then(() => console.log('Connected to MongoDB...'))
   .catch(err => console.error('Could not connect to MongoDB...'));
 
@@ -35,18 +34,26 @@ app.use(cors());
 app.options('*', cors());
 
 var bodyParser = require('body-parser');
-app.use(bodyParser.json({limit: "50mb"}));
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
-
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 app.use(express.json());
+
+
 app.use('/api/categories', categories);
-app.use('/api/customers', customers);
 app.use('/api/products', products);
 app.use('/api/payments', payments);
 app.use('/api/orders', orders);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/stats', stats);
+
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(__dirname + '/dist/'));
+  app.get('*', (req, res) => {
+    res.sendFile(__dirname + "/dist/index.html");
+  })
+}
 
 
 const port = process.env.PORT || 3000;
