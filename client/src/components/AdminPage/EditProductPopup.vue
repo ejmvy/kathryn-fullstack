@@ -390,7 +390,7 @@ export default {
   height: 60px;
   width: inherit;
   min-width: 60px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   border-style: dashed;
   border-radius: 5px;
   margin: 0 10px;
