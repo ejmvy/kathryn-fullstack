@@ -1,7 +1,9 @@
 <template>
-  <ContactBanner v-if="!hideContact"></ContactBanner>
+  <div>
+    <ContactBanner v-if="!hideContact"></ContactBanner>
 
-  <ContactFooter :class="{ footerBottom: hideContact }"></ContactFooter>
+    <ContactFooter></ContactFooter>
+  </div>
 </template>
 
 <script>
@@ -15,10 +17,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.footerBottom {
-  /* position: absolute;
-  bottom: 0; */
-}
-</style>
