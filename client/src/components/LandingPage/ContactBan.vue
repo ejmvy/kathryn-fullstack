@@ -9,7 +9,10 @@
     </h1>
     <div class="flex justify-between m-auto w-1/3 my-14">
       <div v-for="icon in logos" :key="icon">
-        <img :src="icon" class="w-7 h-7 cursor-pointer" />
+        <img
+          :src="require(`../../assets/${icon}`)"
+          class="w-7 h-7 cursor-pointer"
+        />
       </div>
     </div>
     <router-link to="/contact">
@@ -22,11 +25,7 @@
 export default {
   data() {
     return {
-      logos: [
-        "https://i.ibb.co/BjyZdsG/insta-Logo.png",
-        "https://i.ibb.co/FDkCfv4/fb-f.png",
-        "https://i.ibb.co/xmwsQMm/etsy2.png",
-      ],
+      logos: ["icons/insta.png", "icons/fb.png", "icons/etsy.png"],
     };
   },
 };

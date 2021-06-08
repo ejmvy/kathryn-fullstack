@@ -41,8 +41,8 @@
           >
             <div class="pb-10">
               <label class="contactLabel">Address</label>
-              <p>37 Victoria Road, Rathgar</p>
-              <p>Dublin 6, D06 EA30</p>
+              <p>37 Victoria Falls, Ranelagh</p>
+              <p>Dublin 2, D12 BE28</p>
             </div>
             <div class="pb-10">
               <label class="contactLabel">Email</label>
@@ -50,7 +50,7 @@
             </div>
             <div class="pb-10">
               <label class="contactLabel">Phone</label>
-              <p>+353 85 2577 656</p>
+              <p>+353 85 25753 655</p>
             </div>
             <div class="pb-10">
               <label class="contactLabel">Social</label>
@@ -60,7 +60,7 @@
                   v-for="logo in logos"
                   :key="logo"
                 >
-                  <img class="w-6 h-6" :src="logo" />
+                  <img class="w-6 h-6" :src="require(`../assets/${logo}`)" />
                 </div>
               </div>
             </div>
@@ -85,11 +85,7 @@ export default {
     return {
       titleText: "We'd Love to Hear From You!",
       windowWidth: window.innerWidth,
-      logos: [
-        "https://i.ibb.co/BjyZdsG/insta-Logo.png",
-        "https://i.ibb.co/FDkCfv4/fb-f.png",
-        "https://i.ibb.co/xmwsQMm/etsy2.png",
-      ],
+      logos: ["icons/insta.png", "icons/fb.png", "icons/etsy.png"],
       form: {
         name: "",
         email: "",
