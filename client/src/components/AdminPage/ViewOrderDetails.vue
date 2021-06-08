@@ -44,11 +44,11 @@
     </div>
     <div class="buySection bg-green-dark">
       <div class="absolute right-0 flex self-end p-2">
-        <img
+        <Svg
           @click="closePopup()"
-          class="w-4 h-4 cursor-pointer"
-          src="https://i.ibb.co/tmmDGnL/close-x.png"
-        />
+          :svgColour="svgColour"
+          :svg="closePopupSvg"
+        ></Svg>
       </div>
       <div
         class="relative text-left pl-3 my-10 text-white flex h-11/12 flex-col justify-between"
@@ -114,11 +114,14 @@
 </template>
 
 <script>
+import Svg from "../Designs/SvgBase.vue";
 export default {
   props: ["orderDetails"],
   data() {
     return {
       isChecked: false,
+      closePopupSvg: "M6 18L18 6M6 6l12 12",
+      svgColour: "#ccc",
     };
   },
 
@@ -145,6 +148,9 @@ export default {
         ? product.imageUrlArray[0]
         : "https://i.ibb.co/NCDk0sY/corrupt-Image.png";
     },
+  },
+  components: {
+    Svg,
   },
 };
 </script>

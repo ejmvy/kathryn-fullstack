@@ -17,11 +17,12 @@
         <td>{{ order.products.length }}</td>
         <td>€ {{ order.paymentTotal }}</td>
         <td>
-          <img
-            class="w-5 h-5 cursor-pointer ml-3"
-            src="https://i.ibb.co/Ph8LWtv/view.png"
+          <Svg
             @click="$emit('showOrderDetails', order)"
-          />
+            class="ml-3"
+            :svgColour="svgColour"
+            :svg="viewOrderSvg"
+          ></Svg>
         </td>
       </tr>
     </tbody>
@@ -29,11 +30,18 @@
 </template>
 
 <script>
+import Svg from "../Designs/SvgBase.vue";
 export default {
   name: "Table Data",
   props: {
     columns: Array,
     entries: Array,
+  },
+  data() {
+    return {
+      viewOrderSvg: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+      svgColour: "#365a69",
+    };
   },
   methods: {
     convertDate(orderDate) {
@@ -48,6 +56,9 @@ export default {
     tableData() {
       return this.entries || [];
     },
+  },
+  components: {
+    Svg,
   },
 };
 </script>

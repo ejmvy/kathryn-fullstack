@@ -7,11 +7,11 @@
           Your Recent Orders
         </h5>
         <div>
-          <img
-            class="w-5 h-5 cursor-pointer"
+          <Svg
             @click="onConfirmPopupOpen()"
-            src="https://i.ibb.co/z7wkRzt/Document-Check-256.png"
-          />
+            :svgColour="svgColour"
+            :svg="confirmChangesSvg"
+          ></Svg>
         </div>
       </div>
 
@@ -46,11 +46,11 @@
                 />
               </td>
               <td class="py-6 flex justify-end mr-5">
-                <img
+                <Svg
                   @click="showOrderDetails(item)"
-                  class="w-5 h-5 cursor-pointer"
-                  src="https://i.ibb.co/tPpm16k/specs.png"
-                />
+                  :svgColour="svgColour"
+                  :svg="viewOrderSvg"
+                ></Svg>
               </td>
             </tr>
           </tbody>
@@ -82,6 +82,7 @@
 <script>
 import ViewOrderDetails from "./ViewOrderDetails.vue";
 import ConfirmPopup from "../Designs/ConfirmPopup.vue";
+import Svg from "../Designs/SvgBase.vue";
 import axios from "axios";
 export default {
   data() {
@@ -95,6 +96,9 @@ export default {
         message: "",
         icon: "",
       },
+      confirmChangesSvg: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
+      viewOrderSvg: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
+      svgColour: "#365a69",
     };
   },
   methods: {
@@ -162,6 +166,7 @@ export default {
     this.$store.dispatch("recentOrders/callOrdersAPI");
   },
   components: {
+    Svg,
     ViewOrderDetails,
     ConfirmPopup,
   },

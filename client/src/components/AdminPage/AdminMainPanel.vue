@@ -7,30 +7,33 @@
 
       <div class="w-2/3 m-auto my-10">
         <div class="flex justify-between items-center">
-          <img
+          <Svg
             @click="changeWindow('recentOrders')"
-            class="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-            src="https://i.ibb.co/W3kjX3s/file-green.png"
-          />
+            :svgColour="svgColour"
+            :svg="recentOrdersSvg"
+            :classes="svgLarge"
+          ></Svg>
           <div class="w-20 mx-2 sm:w-24 h-0.5 bg-green-light"></div>
-
-          <img
+          <Svg
             @click="changeWindow('statsPanel')"
-            class="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-            src="https://i.ibb.co/HdwZh2S/graph.png"
-          />
+            :svgColour="svgColour"
+            :svg="statsPanelSvg"
+            :classes="svgLarge"
+          ></Svg>
           <div class="w-20 mx-2 sm:w-24 h-0.5 bg-green-light"></div>
-          <img
+          <Svg
             @click="changeWindow('orderHistory')"
-            class="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-            src="https://i.ibb.co/DRD73Z5/list-green.png"
-          />
+            :svgColour="svgColour"
+            :svg="orderHistorySvg"
+            :classes="svgLarge"
+          ></Svg>
           <div class="w-20 mx-2 sm:w-24 h-0.5 bg-green-light"></div>
-          <img
+          <Svg
             @click="changeWindow('editPanel')"
-            class="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer"
-            src="https://i.ibb.co/N6vxTqj/pencil-green.png"
-          />
+            :svgColour="svgColour"
+            :svg="editPanelSvg"
+            :classes="svgLarge"
+          ></Svg>
         </div>
       </div>
 
@@ -62,6 +65,7 @@ import OrderHistoryPanel from "../AdminPage/OrderHistoryPanel.vue";
 import StatsPanel from "../AdminPage/StatsPanel.vue";
 import EditPanel from "../AdminPage/EditPanel.vue";
 import ConfirmPopup from "../Designs/ConfirmPopup.vue";
+import Svg from "../Designs/SvgBase.vue";
 import axios from "axios";
 
 export default {
@@ -79,6 +83,16 @@ export default {
         message: "",
         icon: "",
       },
+      recentOrdersSvg:
+        "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
+      statsPanelSvg:
+        "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+      orderHistorySvg:
+        "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01",
+      editPanelSvg:
+        "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z",
+      svgColour: "#365a69",
+      svgLarge: "w-8 h-8 sm:w-10 sm:h-10",
     };
   },
   methods: {
@@ -122,6 +136,7 @@ export default {
     // this.$store.dispatch("prods/callProductsApi");
   },
   components: {
+    Svg,
     AdminLogin,
     AdminHeader,
     ConfirmPopup,
