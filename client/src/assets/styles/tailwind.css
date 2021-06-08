@@ -120,7 +120,7 @@ button:hover {
 }
 
 .contactLabel {
-    @apply uppercase text-xxs text-gray-600 font-bold;
+    @apply uppercase text-xxs text-gray-400 font-bold;
 }
 
 .displaySelect {
