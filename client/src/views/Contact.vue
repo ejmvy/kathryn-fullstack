@@ -1,7 +1,10 @@
 <template>
   <div>
     <Header :addShadow="true"></Header>
-    <section class="mb-10 pt-10 w-full flex flex-col items-center">
+    <section
+      class="mb-10 pt-10 w-full flex flex-col items-center"
+      :class="windowWidth > 600 ? '' : 'h-screen'"
+    >
       <TitleDesign :title="titleText"></TitleDesign>
       <div class="flex justify-between mt-14 w-11/12">
         <div class="flex flex-1 flex-col text-green-dark px-10">
@@ -65,7 +68,10 @@
         </div>
       </div>
     </section>
-    <Footer :hideContact="true"></Footer>
+    <Footer
+      :hideContact="true"
+      :class="windowWidth > 600 ? 'absolute bottom-0 w-full' : ''"
+    ></Footer>
   </div>
 </template>
 
@@ -78,6 +84,7 @@ export default {
   data() {
     return {
       titleText: "We'd Love to Hear From You!",
+      windowWidth: window.innerWidth,
       logos: [
         "https://i.ibb.co/BjyZdsG/insta-Logo.png",
         "https://i.ibb.co/FDkCfv4/fb-f.png",
