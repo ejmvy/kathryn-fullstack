@@ -36,14 +36,11 @@
       </div>
     </div>
     <div v-if="cardObject.direction" class="flex items-center self-start">
-      <img
-        class="w-4 h-4"
-        :src="
-          cardObject.direction == 'up'
-            ? 'https://i.ibb.co/n6wwL5x/green-Increase.png'
-            : 'https://i.ibb.co/qksddSx/redDown.png'
-        "
-      />
+      <Svg
+        :svgColour="cardObject.direction == 'up' ? upSvgColour : downSvgColour"
+        :svg="cardObject.direction == 'up' ? upSvg : downSvg"
+      ></Svg>
+
       <div class="px-4 flex">{{ cardObject.change }}</div>
       <p class="text-gray-400 text-sm">Since last month</p>
     </div>
@@ -51,8 +48,20 @@
 </template>
 
 <script>
+import Svg from "../Designs/SvgBase.vue";
 export default {
   props: ["cardObject"],
+  data() {
+    return {
+      upSvg: "M5 11l7-7 7 7M5 19l7-7 7 7",
+      upSvgColour: "#50ccc7",
+      downSvg: "M19 13l-7 7-7-7m14-8l-7 7-7-7",
+      downSvgColour: "#50ccc7",
+    };
+  },
+  components: {
+    Svg,
+  },
 };
 </script>
 
