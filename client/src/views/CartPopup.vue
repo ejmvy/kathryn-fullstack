@@ -1,19 +1,19 @@
 <template>
   <div
-    class="cartPopup h-screen lg:absolute lg:right-0 overflow-hidden lg:w-1/4 flex flex-col bg-green-dark mt-0 pb-5"
+    class="cartPopup h-screen lg:absolute lg:right-0 overflow-hidden lg:w-2/6 xl:w-1/4 flex flex-col bg-green-dark mt-0 pb-5"
   >
     <div class="absolute right-3 top-3 cursor-pointer">
-      <img
+      <Svg
         @click="$emit('closePopup')"
-        class="w-4 h-4"
-        src="https://i.ibb.co/tmmDGnL/close-x.png"
-      />
+        :svgColour="svgColour"
+        :svg="closePopupSvg"
+      ></Svg>
     </div>
     <div
       class="flex items-center justify-between px-8 py-3 mt-8 border-b border-gray-light"
     >
       <div class="flex">
-        <img class="w-5 h-5" src="https://i.ibb.co/vzdx4Vj/cart.png" />
+        <Svg :svgColour="'white'" :svg="cartSvg"></Svg>
         <div
           class="w-5 h-5 text-xs flex items-center justify-center bg-white rounded-full text-green font-bold relative -top-2"
         >
@@ -48,11 +48,11 @@
           <p class="text-gray-300 text-xs">{{ item.colourSelected }}</p>
         </div>
         <div class="text-white">{{ item.qty }}</div>
-        <img
-          class="w-5 h-5 cursor-pointer"
-          src="https://i.ibb.co/TKgDyPN/bin.png"
+        <Svg
           @click="deleteItemFromCart(item, idx)"
-        />
+          :svgColour="'white'"
+          :svg="binSvg"
+        ></Svg>
       </div>
     </div>
     <div class="flex justify-center cartBtn">
@@ -66,12 +66,19 @@
 </template>
 
 <script>
+import Svg from "../components/Designs/SvgBase.vue";
 export default {
   data() {
     return {
       cartData: [],
       cartTotal: 0,
       totalItems: 12,
+      closePopupSvg: "M6 18L18 6M6 6l12 12",
+      cartSvg:
+        "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
+      binSvg:
+        "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
+      svgColour: "#ccc",
     };
   },
   mounted() {
@@ -108,6 +115,9 @@ export default {
     const cartItems = this.$store.getters["cart/products"];
 
     this.cartData = cartItems;
+  },
+  components: {
+    Svg,
   },
 };
 </script>

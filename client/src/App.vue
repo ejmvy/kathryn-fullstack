@@ -202,7 +202,7 @@ input:focus {
   transition: all 0.8s ease;
 }
 .slide-up-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-up-enter-from,
 .slide-up-leave-to {
