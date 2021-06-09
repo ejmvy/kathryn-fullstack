@@ -12,9 +12,10 @@
         </p>
       </div>
 
-      <div class="flex flex-col md:flex-row h-5/6">
+      <div class="height90 flex flex-col md:flex-row">
         <div
-          class="w-full md:w-2/3 h-full overflow-auto flex flex-col md:border-r-4 border-gray-100"
+          class="w-full md:w-2/3 overflow-auto flex flex-col md:border-r-4 border-gray-100"
+          :class="windowWidth > 780 ? 'height90' : 'h-full'"
         >
           <div v-for="(product, idx) in orderInfo.products" :key="idx">
             <div class="w-full flex h-36 items-center justify-center">
@@ -36,25 +37,18 @@
             </div>
           </div>
         </div>
-        <div class="w-full md:w-1/3 h-full flex flex-col justify-between">
+        <!-- web order details panel -->
+        <div
+          v-if="windowWidth > 780"
+          class="w-full md:w-1/3 height90 flex flex-col justify-between"
+        >
           <div class="">
-            <div class="flex justify-between w-full">
-              <div class="h-8 w-8"></div>
-              <div class="uppercase text-green-dark font-bold mb-10 pt-5">
+            <div class="flex justify-center w-full">
+              <div
+                class="uppercase text-sm text-green-light font-bold mb-10 pt-5"
+              >
                 Order Details
               </div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 transform rotate-90 relative -top-5 right-0"
-                viewBox="0 0 20 20"
-                fill="#365a69"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                  clip-rule="evenodd"
-                />
-              </svg>
             </div>
             <div class="px-5">
               <div class="text-left">
@@ -68,6 +62,10 @@
                 <p class="my-2" text-sm>{{ orderInfo.orderRef }}</p>
               </div>
               <div class="text-left">
+                <label class="label-grey">Shipping Price: </label>
+                <p class="my-2" text-sm>€ 6.99</p>
+              </div>
+              <div v-if="orderInfo.deliveredDate" class="text-left">
                 <label class="label-grey">Shipped: </label>
                 <p class="my-2 text-sm">
                   {{ convertDate(orderInfo.deliveredDate) }}
@@ -82,6 +80,68 @@
             </p>
           </div>
         </div>
+        <!-- mobile order details popup panel -->
+        <div v-else>
+          <!-- <transition name="slide-up" class="transition"> -->
+          <div
+            class="relative bottom-0 w-full h-full flex flex-col justify-between border-t border-gray-200 shadow-md"
+          >
+            <div class="flex justify-between w-full">
+              <div class="h-10 w-10"></div>
+              <div
+                class="uppercase text-sm text-green-light font-bold mb-8 pt-5"
+              >
+                Order Details
+              </div>
+              <svg
+                @click="detailsPanel = !detailsPanel"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-10 w-10 transform rotate-90 relative -top-5 right-0"
+                viewBox="0 0 20 20"
+                fill="#627F8A"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <transition name="slide-fade" class="transition">
+              <div v-if="detailsPanel" class="customisePanel">
+                <div class="px-5">
+                  <div class="text-left">
+                    <label class="label-grey">Ordered: </label>
+                    <p class="my-2 text-sm">
+                      {{ convertDate(orderInfo.orderDate) }}
+                    </p>
+                  </div>
+                  <div class="text-left">
+                    <label class="label-grey">Ref Number: </label>
+                    <p class="my-2" text-sm>{{ orderInfo.orderRef }}</p>
+                  </div>
+                  <div class="text-left">
+                    <label class="label-grey">Shipping Price: </label>
+                    <p class="my-2" text-sm>€ 6.99</p>
+                  </div>
+                  <div v-if="orderInfo.deliveredDate" class="text-left">
+                    <label class="label-grey">Shipped: </label>
+                    <p class="my-2 text-sm">
+                      {{ convertDate(orderInfo.deliveredDate) }}
+                    </p>
+                  </div>
+                </div>
+                <div class="text-left px-5">
+                  <label class="label-grey"> Payment Total: </label>
+                  <p class="my-2 text-xl font-bold text-green-light text-right">
+                    € {{ orderInfo.cartTotal }}
+                  </p>
+                </div>
+              </div>
+            </transition>
+          </div>
+          <!-- </transition> -->
+        </div>
       </div>
     </div>
   </div>
@@ -94,6 +154,8 @@ export default {
   data() {
     return {
       closeSvg: "M15 19l-7-7 7-7",
+      windowWidth: window.innerWidth,
+      detailsPanel: false,
     };
   },
   methods: {
@@ -120,8 +182,21 @@ export default {
 </script>
 
 <style scoped>
+.height90 {
+  height: 90%;
+}
 .popupArea {
   top: 20%;
   left: 25%;
+}
+
+.customisePanel {
+  /* bottom: 0; */
+  transition: all 0.5s ease-in-out;
+  z-index: 5;
+}
+
+.transition {
+  z-index: 10;
 }
 </style>

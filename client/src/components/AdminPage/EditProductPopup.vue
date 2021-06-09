@@ -1,7 +1,11 @@
 <template>
-  <div class="popupIndex mainPopupArea w-4/5 fixed flex justify-center">
-    <div class="bg-white rounded-sm shadow-lg flex">
-      <div class="textArea flex flex-col p-1 pt-4">
+  <div
+    class="popupIndex w-screen h-screen fixed top-0 left-0 flex justify-center"
+  >
+    <div
+      class="w-10/12 lg:w-2/3 xl:w-1/2 lg:m-auto h-10/12 bg-white shadow-xl m-auto rounded-md flex"
+    >
+      <div class="textArea flex flex-col p-1 pt-4 mb-2">
         <h2 class="mt-5 uppercase text-sm font-bold text-gray-dark">
           {{ productObject.name ? editTitle + productObject.name : addTitle }}
         </h2>
@@ -71,8 +75,8 @@
             </div>
           </div>
         </form>
-        <div class="w-2/3 absolute bottom-5">
-          <div class="w-full flex justify-center">
+        <div class="">
+          <div class="w-full flex justify-center mt-10">
             <button @click="closePopup()" class="btn-green btn-sm mr-2">
               Back
             </button>
@@ -85,67 +89,69 @@
 
       <div
         v-if="!isNewProduct"
-        class="ImageArea flex text-white bg-green-dark flex-col items-center p-3"
+        class="ImageArea flex text-white bg-green-dark flex-col items-center justify-between p-3"
       >
         <div class="h-1/2 w-full">
-          <img
-            v-if="
-              editedProduct.imageUrlArray[0] || productObject.imageUrlArray[0]
-            "
-            class="relative w-full h-full"
-            :src="
-              editedProduct.imageUrlArray[0]
-                ? editedProduct.imageUrlArray[0]
-                : productObject.imageUrlArray[0]
-            "
-          />
-        </div>
+          <div class="h-full">
+            <img
+              v-if="
+                editedProduct.imageUrlArray[0] || productObject.imageUrlArray[0]
+              "
+              class="relative w-full h-full"
+              :src="
+                editedProduct.imageUrlArray[0]
+                  ? editedProduct.imageUrlArray[0]
+                  : productObject.imageUrlArray[0]
+              "
+            />
+          </div>
 
-        <div class="flex mt-5">
-          <div class="smImageArea" @click.prevent="onPickFile2">
-            <img
-              v-if="
-                editedProduct.imageUrlArray[1] || productObject.imageUrlArray[1]
-              "
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[1]
-                  ? editedProduct.imageUrlArray[1]
-                  : productObject.imageUrlArray[1]
-              "
-            />
-          </div>
-          <div class="smImageArea">
-            <img
-              v-if="
-                editedProduct.imageUrlArray[2] || productObject.imageUrlArray[2]
-              "
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[2]
-                  ? editedProduct.imageUrlArray[2]
-                  : productObject.imageUrlArray[2]
-              "
-            />
-          </div>
-          <div class="smImageArea">
-            <img
-              v-if="
-                editedProduct.imageUrlArray[3] || productObject.imageUrlArray[3]
-              "
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[3]
-                  ? editedProduct.imageUrlArray[3]
-                  : productObject.imageUrlArray[3]
-              "
-            />
+          <div class="flex mt-5">
+            <div class="smImageArea" @click.prevent="onPickFile2">
+              <img
+                v-if="
+                  editedProduct.imageUrlArray[1] ||
+                  productObject.imageUrlArray[1]
+                "
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[1]
+                    ? editedProduct.imageUrlArray[1]
+                    : productObject.imageUrlArray[1]
+                "
+              />
+            </div>
+            <div class="smImageArea">
+              <img
+                v-if="
+                  editedProduct.imageUrlArray[2] ||
+                  productObject.imageUrlArray[2]
+                "
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[2]
+                    ? editedProduct.imageUrlArray[2]
+                    : productObject.imageUrlArray[2]
+                "
+              />
+            </div>
+            <div class="smImageArea">
+              <img
+                v-if="
+                  editedProduct.imageUrlArray[3] ||
+                  productObject.imageUrlArray[3]
+                "
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[3]
+                    ? editedProduct.imageUrlArray[3]
+                    : productObject.imageUrlArray[3]
+                "
+              />
+            </div>
           </div>
         </div>
-        <button
-          class="btn-white btn-lrg absolute bottom-5"
-          @click.prevent="onPickFile"
-        >
+        <button class="btn-white btn-lrg" @click.prevent="onPickFile">
           Upload Images
         </button>
         <input
@@ -158,57 +164,57 @@
         />
       </div>
 
+      <!-- ADDING NEW PRODUCT PHOTOS SECTION -->
       <div
         v-if="isNewProduct"
-        class="ImageArea flex text-white bg-green-dark flex-col items-center p-3"
+        class="ImageArea flex text-white bg-green-dark flex-col items-center justify-between p-3"
       >
-        <div class="h-1/2 w-full border-gray-light border-dashed rounded-sm">
-          <img
-            class="relative w-full h-full"
-            :src="
-              editedProduct.imageUrlArray[0]
-                ? editedProduct.imageUrlArray[0]
-                : ''
-            "
-          />
-        </div>
+        <div class="h-1/2 w-full">
+          <div class="h-full border-gray-light border-dashed rounded-sm">
+            <img
+              class="relative w-full h-full"
+              :src="
+                editedProduct.imageUrlArray[0]
+                  ? editedProduct.imageUrlArray[0]
+                  : ''
+              "
+            />
+          </div>
 
-        <div class="flex mt-5">
-          <div class="smImageArea">
-            <img
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[1]
-                  ? editedProduct.imageUrlArray[1]
-                  : ''
-              "
-            />
-          </div>
-          <div class="smImageArea">
-            <img
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[2]
-                  ? editedProduct.imageUrlArray[2]
-                  : ''
-              "
-            />
-          </div>
-          <div class="smImageArea">
-            <img
-              class="smImage"
-              :src="
-                editedProduct.imageUrlArray[3]
-                  ? editedProduct.imageUrlArray[3]
-                  : ''
-              "
-            />
+          <div class="flex mt-5">
+            <div class="smImageArea">
+              <img
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[1]
+                    ? editedProduct.imageUrlArray[1]
+                    : ''
+                "
+              />
+            </div>
+            <div class="smImageArea">
+              <img
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[2]
+                    ? editedProduct.imageUrlArray[2]
+                    : ''
+                "
+              />
+            </div>
+            <div class="smImageArea">
+              <img
+                class="smImage"
+                :src="
+                  editedProduct.imageUrlArray[3]
+                    ? editedProduct.imageUrlArray[3]
+                    : ''
+                "
+              />
+            </div>
           </div>
         </div>
-        <button
-          class="btn-white btn-lrg absolute bottom-5"
-          @click.prevent="onPickFile"
-        >
+        <button class="btn-white btn-lrg" @click.prevent="onPickFile">
           Upload Images
         </button>
         <input
@@ -290,6 +296,7 @@ export default {
       this.$emit("saveProduct", newEdits);
     },
     clearEditObject() {
+      console.log("clear prod");
       this.editedProduct = {
         name: "",
         price: "",
@@ -303,6 +310,8 @@ export default {
         imageUrlArray: [],
         imageRawFiles: [],
       };
+
+      console.log(this.editedProduct);
     },
     closePopup() {
       this.clearEditObject();
@@ -364,11 +373,11 @@ export default {
 </script>
 
 <style scoped>
-.mainPopupArea {
+/* .mainPopupArea {
   top: 15%;
   left: 10%;
   height: 600px;
-}
+} */
 
 .textArea {
   flex: 2;

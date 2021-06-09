@@ -4,7 +4,7 @@
       class="md:flex md:absolute w-screen h-screen overflow-hidden bg-green-light md:justify-center md:items-center"
     >
       <div
-        class="w-full h-screen overflow-hidden md:w-4/5 md:h-4/5 bg-white shadow-2xl flex flex-col md:flex-row"
+        class="w-full h-screen overflow-hidden md:w-4/5 xl:w-2/3 2xl:w-1/2 md:h-4/5 bg-white shadow-2xl flex flex-col md:flex-row"
         :class="{ blackBg: customisePanel }"
       >
         <div

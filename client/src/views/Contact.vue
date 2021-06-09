@@ -3,7 +3,7 @@
     <Header :addShadow="true"></Header>
     <section
       class="mb-10 pt-10 w-full flex flex-col items-center"
-      :class="windowWidth > 600 ? '' : 'h-screen'"
+      :class="windowWidth > 600 ? 'h-screen' : 'h-screen'"
     >
       <TitleDesign :title="titleText"></TitleDesign>
       <div class="flex justify-between mt-14 w-11/12">
@@ -68,10 +68,7 @@
         </div>
       </div>
     </section>
-    <Footer
-      :hideContact="true"
-      :class="windowWidth > 600 ? 'absolute bottom-0 w-full' : ''"
-    ></Footer>
+    <Footer :hideContact="true"></Footer>
   </div>
 </template>
 
