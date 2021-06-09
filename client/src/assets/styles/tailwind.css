@@ -84,7 +84,7 @@ button:hover {
 }
 
 .btn-sm {
-    @apply text-xxs px-6 py-2;
+    @apply text-xxs px-6 pt-2 pb-1;
 }
 
 .section {

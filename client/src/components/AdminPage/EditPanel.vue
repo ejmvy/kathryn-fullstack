@@ -177,6 +177,7 @@ export default {
       this.showEditProductPopup = !this.showEditProductPopup;
     },
     addNewProductBtn() {
+      this.productToEdit = {};
       this.emitter.emit("showOverlay");
       this.showEditProductPopup = true;
     },
@@ -222,7 +223,6 @@ export default {
           this.refreshProducts();
           this.emitter.emit("showNotification", {
             state: true,
-            title: "Success!",
             message: "New Details saved.",
           });
         })
@@ -244,7 +244,6 @@ export default {
           this.refreshProducts();
           this.emitter.emit("showNotification", {
             state: true,
-            title: "Success!",
             message: "New Product saved.",
           });
         })
