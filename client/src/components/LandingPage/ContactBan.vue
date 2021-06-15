@@ -3,7 +3,7 @@
     <h1
       data-aos="fade-right"
       data-aos-duration="1000"
-      class="text-4xl font-bold"
+      class="text-2xl md:text-4xl font-bold"
     >
       Keep in Touch ?
     </h1>
