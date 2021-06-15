@@ -76,8 +76,9 @@ export default createStore({
         .get(`${process.env.VUE_APP_BASE_URL}orders/userhistory/${userId}`)
 
         .then((data) => {
-          const sortedData = data.data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
-          console.log('sorted: ', sortedData)
+          const sortedData = data.data.sort(
+            (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+          );
           context.commit("setUserOrders", sortedData);
         })
         .catch((e) => {
