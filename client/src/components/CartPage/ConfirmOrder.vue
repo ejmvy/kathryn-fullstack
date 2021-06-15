@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 export default {
   data() {
@@ -103,6 +103,7 @@ export default {
       stripe: {},
       cardElement: {},
       paymentComplete: false,
+      clientSecret: "",
     };
   },
 
@@ -126,66 +127,37 @@ export default {
         products: this.cartItems,
       };
 
-      console.log("payment obj:");
-      console.log(confirmOrder);
-
       const { paymentMethod, error } = await this.stripe.createPaymentMethod(
         "card",
         this.cardElement,
         {
           billing_details: {
-            name: "EJ McVey",
+            name: this.userDetails.name,
+            email: this.userDetails.email,
+            phone: this.userDetails.phoneNumber,
+            address: {
+              city: this.userDetails.userAddress.city,
+              country: "IE",
+              line1: this.userDetails.userAddress.addressLine1,
+              line2: this.userDetails.userAddress.addressLine2,
+              postal_code: this.userDetails.userAddress.postcode,
+            },
           },
         }
       );
 
       if (error) {
-        alert(error);
         console.log("error1", error);
       } else {
-        confirmOrder.payment_method_id = paymentMethod.id;
-
-        axios
-          .post(
-            `${process.env.VUE_APP_BASE_URL}payments/create-payment-intent`,
-            confirmOrder
-          )
-          .then((response) => {
-            console.log("payment response");
-            console.log(response);
-
-            this.payWithCard(
-              this.stripe,
-              this.cardElement,
-              response.data.clientSecret,
-              confirmOrder
-            );
-          })
-          .catch((error) => {
-            console.log("error", error);
-            alert(error);
-          });
+        console.log("success", paymentMethod.id);
+        this.payWithCard(this.stripe, paymentMethod.id, confirmOrder);
       }
     },
-    payWithCard(stripe, card, clientSecret, confirmOrder) {
+    payWithCard(stripe, paymentMethodId, confirmOrder) {
       this.loading(true);
       stripe
-        .confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: card,
-            billing_details: {
-              address: {
-                city: this.userDetails.userAddress.city,
-                country: "IE",
-                line1: this.userDetails.userAddress.addressLine1,
-                line2: this.userDetails.userAddress.addressLine2,
-                postal_code: this.userDetails.userAddress.postcode,
-              },
-              email: this.userDetails.email,
-              name: this.userDetails.name,
-              phone: this.userDetails.phoneNumber,
-            },
-          },
+        .confirmCardPayment(this.clientSecret, {
+          payment_method: paymentMethodId,
         })
         .then(
           function (result) {
@@ -208,15 +180,11 @@ export default {
       axios
         .post(`${process.env.VUE_APP_BASE_URL}orders`, confirmOrder)
         .then((data) => {
-          console.log("payment taken");
           let newOrder = data.data;
-          console.log(newOrder);
 
           this.$store.dispatch("cart/clearCart");
           this.$store.dispatch("cart/setPaymentStep", 3);
           this.$emit("orderComplete", newOrder);
-
-          // this.updateUserDetails();
 
           window.scroll({
             top: 0,
@@ -232,23 +200,6 @@ export default {
       console.log("change address");
       this.$store.dispatch("cart/setPaymentStep", 1);
     },
-    // updateUserDetails() {
-    //   const key = this.$store.getters["getUserKey"];
-    //   console.log("user key: " + key);
-    //   axios
-    //     .get(`${process.env.VUE_APP_BASE_URL}users/me`, {
-    //       headers: {
-    //         "x-auth-token": key,
-    //       },
-    //     })
-    //     .then((data) => {
-    //       data.userKey = key;
-    //       this.$store.dispatch("login", data.data);
-    //     })
-    //     .catch((e) => {
-    //       console.log(`err ${e}`);
-    //     });
-    // },
     // Show the customer the error from Stripe if their card fails to charge
     showError(errorMsgText) {
       this.loading(false);
@@ -275,9 +226,26 @@ export default {
   },
 
   async mounted() {
-    this.stripe = await loadStripe(
-      "pk_test_51IsWpaAPVQ6hfOWZhtQaeXAKkvTKreGX7EJEL1RDVle6p1s0LIkOwIzyYtkfJ2UqFAW71Ticdo441qhEO0woWPcF0031xNl9Oo"
-    );
+    this.stripe = window.Stripe(process.env.VUE_APP_STRIPE_KEY);
+
+    const confirmOrder = {
+      userId: this.userDetails._id,
+      cartTotal: this.getItemsAmount,
+      paymentTotal: this.getTotalAmount,
+      products: this.cartItems,
+    };
+
+    axios
+      .post(
+        `${process.env.VUE_APP_BASE_URL}payments/create-payment-intent`,
+        confirmOrder
+      )
+      .then((response) => {
+        this.clientSecret = response.data.clientSecret;
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
 
     const elements = this.stripe.elements();
     this.cardElement = elements.create("card", {
