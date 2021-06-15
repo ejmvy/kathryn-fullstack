@@ -18,8 +18,8 @@
           :class="windowWidth > 780 ? 'height90' : 'h-full'"
         >
           <div v-for="(product, idx) in orderInfo.products" :key="idx">
-            <div class="w-full flex h-36 items-center justify-center">
-              <div class="w-24 h-28 mr-16">
+            <div class="w-full flex h-36 items-center justify-center px-8">
+              <div class="w-24 h-28 mr-5 md:mr-16">
                 <img class="h-28 w-24" :src="getImageUrl(product._id)" />
               </div>
               <div class="flex flex-col items-center justify-between">
