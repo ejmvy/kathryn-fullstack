@@ -22,7 +22,6 @@ import WebLogin from "../components/Designs/WebLogin.vue";
 import MobileLogin from "../components/Designs/MobileLogin.vue";
 import axios from "axios";
 export default {
-  data() {},
   methods: {
     loginUserFn(loginUser) {
       this.getUserAuthKey(loginUser, "login");
