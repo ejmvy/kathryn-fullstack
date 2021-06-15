@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-const stripe = require("stripe")("sk_test_51IsWpaAPVQ6hfOWZe5SUnXdYnRnmiLSWx3zYc5T9fAWTBzVw3UTETeQvZU67pHPBFGwOuSk99QETP8pI2syO3cxO00ilWDoqIB");
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const calculateOrderAmount = items => {
     let cost = items.reduce((prev, acc) => prev + (acc.qty * acc.price), 0);
@@ -11,12 +11,12 @@ const calculateOrderAmount = items => {
     return parseInt(cost);
 }
 
-router.post('/create-payment-intent', async(req, res) => {
-    const items  = req.body.products;
+router.post('/create-payment-intent', async (req, res) => {
+    const items = req.body.products;
 
     const paymentIntent = await stripe.paymentIntents.create({
         amount: calculateOrderAmount(items),
-        currency:'eur'
+        currency: 'eur'
     })
 
     res.send({
@@ -24,4 +24,4 @@ router.post('/create-payment-intent', async(req, res) => {
     });
 });
 
-module.exports = router; 
+module.exports = router;
