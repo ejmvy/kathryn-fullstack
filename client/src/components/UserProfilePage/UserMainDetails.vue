@@ -3,11 +3,7 @@
     <div
       class="bg-white px-3 py-4 flex w-full justify-between md:justify-center items-center md:shadow-lg"
     >
-      <img
-        @click="closeMenu()"
-        class="w-5 h-5 md:hidden transform rotate-90 cursor-pointer"
-        src="https://i.ibb.co/dQxfSHq/down.png"
-      />
+      <Svg @click="closeMenu()" :svgColour="'#666666'" :svg="backSvg"></Svg>
       <p class="uppercase text-sm tracking-wider">My Details</p>
       <div class="w-5 h-5"></div>
     </div>
@@ -63,6 +59,7 @@
 
 <script>
 import axios from "axios";
+import Svg from "../Designs/SvgBase.vue";
 export default {
   props: ["user"],
   data() {
@@ -73,6 +70,7 @@ export default {
         email: "",
         phoneNumber: "",
       },
+      backSvg: "M15 19l-7-7 7-7",
       missingValues: true,
     };
   },
@@ -137,6 +135,9 @@ export default {
     };
 
     if (userDetails) this.userObject = newObj;
+  },
+  components: {
+    Svg,
   },
 };
 </script>

@@ -3,11 +3,8 @@
     <div
       class="bg-white px-3 py-4 flex w-full justify-between md:justify-center items-center md:shadow-lg"
     >
-      <img
-        @click="closeMenu()"
-        class="w-5 h-5 md:hidden transform rotate-90 curos"
-        src="https://i.ibb.co/dQxfSHq/down.png"
-      />
+      <Svg @click="closeMenu()" :svgColour="'#666666'" :svg="backSvg"></Svg>
+
       <p class="uppercase text-sm tracking-wider">My Orders</p>
       <div class="w-5 h-5"></div>
     </div>
@@ -100,12 +97,14 @@
 
 <script>
 import OrderViewPopup from "./OrderViewPopup.vue";
+import Svg from "../Designs/SvgBase.vue";
 export default {
   data() {
     return {
       userOrders: [],
       openOrder: false,
       viewChosenOrder: {},
+      backSvg: "M15 19l-7-7 7-7",
     };
   },
   methods: {
@@ -145,6 +144,7 @@ export default {
     this.$store.dispatch("getUserOrders", user._id);
   },
   components: {
+    Svg,
     OrderViewPopup,
   },
 };
