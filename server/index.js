@@ -38,6 +38,14 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self' https://checkout.stripe.com https://js.stripe.com;script-src-attr 'none';frame-src 'self' https://js.stripe.com https://hooks.stripe.com;connect-src 'self' https://api.stripe.com; style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+  );
+  next();
+});
+
 
 app.use('/api/categories', categories);
 app.use('/api/products', products);
