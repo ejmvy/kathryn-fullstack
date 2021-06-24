@@ -91,7 +91,7 @@
 </template>
 
 <script>
-// import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 export default {
   data() {
@@ -226,7 +226,7 @@ export default {
   },
 
   async mounted() {
-    this.stripe = window.Stripe(process.env.VUE_APP_STRIPE_KEY);
+    this.stripe = await loadStripe(process.env.VUE_APP_STRIPE_KEY);
 
     const confirmOrder = {
       userId: this.userDetails._id,
