@@ -134,7 +134,7 @@ nav li {
   cursor: pointer;
   opacity: 0;
   border-bottom: 1px solid transparent;
-  animation: slide_up_img 0.9s ease 1.5s forwards;
+  animation: slide_up_img 0.9s ease 1s forwards;
 }
 
 li:hover {
