@@ -33,7 +33,7 @@
                 </td>
                 <td class="">{{ product.qty }}</td>
                 <td class="text-sm">
-                  {{ (product.price * product.qty).toFixed(2) }}
+                  € {{ (product.price * product.qty).toFixed(2) }}
                 </td>
               </tr>
             </tbody>
