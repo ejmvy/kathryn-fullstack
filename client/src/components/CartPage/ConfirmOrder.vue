@@ -26,11 +26,11 @@
     <div class="w-full flex flex-col p-3">
       <div class="flex justify-between">
         <h5 class="labelxs">Shipping Address</h5>
-        <img
+        <Svg
           @click="changeAddress()"
-          class="w-4 h-4 cursor-pointer"
-          src="https://i.ibb.co/N6vxTqj/pencil-green.png"
-        />
+          :svgColour="'#365a69'"
+          :svg="editSvg"
+        ></Svg>
       </div>
       <div class="text-xs self-start pt-5">
         {{ userDetails.userAddress.firstName }}
@@ -92,6 +92,7 @@
 
 <script>
 import { loadStripe } from "@stripe/stripe-js";
+import Svg from "../Designs/SvgBase.vue";
 import axios from "axios";
 export default {
   data() {
@@ -104,6 +105,8 @@ export default {
       cardElement: {},
       paymentComplete: false,
       clientSecret: "",
+      editSvg:
+        "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z",
     };
   },
 
@@ -261,6 +264,9 @@ export default {
   created() {
     this.cartItems = this.$store.getters["cart/products"];
     this.userDetails = this.$store.getters["getUserDetails"];
+  },
+  components: {
+    Svg,
   },
 };
 </script>
