@@ -18,7 +18,7 @@
 
         <div class="flex flex-col mt-5">
           <div class="label-grey">Delivery</div>
-          <p class="text-xs">Delivered on or before Monday 26th April 2021</p>
+          <p class="text-xs">Delivered on or before {{ getDeliveryDate }}</p>
         </div>
 
         <div class="flex flex-col mt-5">
@@ -44,7 +44,7 @@
           <div class="itemDesc flex flex-col items-center justify-between px-8">
             <div class="flex items-center justify-between w-full pb-4">
               <div class="text-gray-500">{{ product.name }}</div>
-              <div class="text-xs font-bold">{{ product.price }}</div>
+              <div class="text-xs font-bold">€ {{ product.price }}</div>
             </div>
             <div class="text-gray-400 text-xs">{{ product._id }}</div>
             <div class="flex items-center pt-3">
@@ -87,6 +87,17 @@ export default {
       return product
         ? product.imageUrlArray[0]
         : "https://i.ibb.co/NCDk0sY/corrupt-Image.png";
+    },
+  },
+  computed: {
+    getDeliveryDate() {
+      const currentDate = new Date();
+      let deliveryDate = new Date(
+        currentDate.setDate(currentDate.getDate() + 2 * 7)
+      );
+      console.log("date: ", deliveryDate);
+      deliveryDate = deliveryDate.toString().slice(0, 10);
+      return deliveryDate;
     },
   },
 
