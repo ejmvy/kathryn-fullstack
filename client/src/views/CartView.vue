@@ -12,7 +12,7 @@
         >
           <router-link class="logo text-3xl text-white" to="/">KC</router-link>
           <div class="flex">
-            <img class="w-6 h-6" src="https://i.ibb.co/vzdx4Vj/cart.png" />
+            <Svg :svgColour="'white'" :svg="cartSvg"></Svg>
             <div
               class="w-5 h-5 text-xs flex items-center justify-center bg-white rounded-full text-green font-bold relative -top-2"
             >
@@ -30,7 +30,7 @@
             </router-link>
             <h5 class="uppercase font-bold tracking-wider pl-5">My Bag</h5>
           </div>
-          <div class="h-11/12 md:mx-5">
+          <div class="h-11/12 mt-3 md:mt-0 md:mx-5">
             <div
               v-for="(product, idx) in cartItems"
               :key="idx"
@@ -43,7 +43,7 @@
                 <div class="flex flex-col items-center justify-between">
                   <div class="flex items-center justify-between w-full pb-4">
                     <div class="text-gray-500">{{ product.name }}</div>
-                    <div class="text-xs font-bold">{{ product.price }}</div>
+                    <div class="text-xs font-bold">€ {{ product.price }}</div>
                   </div>
                   <div class="text-gray-400 text-xs">{{ product._id }}</div>
                   <div class="flex items-center pt-3">
@@ -181,6 +181,8 @@ import Svg from "../components/Designs/SvgBase.vue";
 export default {
   data() {
     return {
+      cartSvg:
+        "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
       plusSvg: "M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z",
       minusSvg: "M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z",
       backSvg: "M15 19l-7-7 7-7",
