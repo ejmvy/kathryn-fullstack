@@ -7,7 +7,7 @@
         <div class="dot mt-5"></div>
       </div>
       <div class="mt-5 lg:w-2/3" data-aos="fade-up">
-        <h4 class="font-bold text-2xl mb-5">
+        <h4 class="fontRegular font-bold text-xl mb-5">
           "Thoughtful, Authentic, Personal"
         </h4>
         <p class="mt-10 text-sm leading-7">
