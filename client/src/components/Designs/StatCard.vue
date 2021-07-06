@@ -56,7 +56,7 @@ export default {
       upSvg: "M5 11l7-7 7 7M5 19l7-7 7 7",
       upSvgColour: "#50ccc7",
       downSvg: "M19 13l-7 7-7-7m14-8l-7 7-7-7",
-      downSvgColour: "#50ccc7",
+      downSvgColour: "#fa8072",
     };
   },
   components: {
@@ -66,8 +66,6 @@ export default {
 </script>
 
 <style scoped>
-/* increaseColor = #4BDD68   #71CC98*/
-/* decreaseColor = #E23F36 */
 /* // #365a69; */
 .cardItem {
   border-top: 4px solid #627f8a;
