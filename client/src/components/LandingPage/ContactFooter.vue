@@ -6,16 +6,20 @@
       <div class="logo">
         <p class="logo text-green-white text-4xl sm:text-5xl">KC</p>
       </div>
-      <div class="text-xs md:text-left mt-8 md:mt-0 text-gray-light">
+      <div
+        class="fontRegular text-xxs md:text-left mt-8 md:mt-0 text-gray-light"
+      >
         <p>+353 85 2577 656</p>
-        <p>kathrynokelly@gmail.com</p>
+        <p class="leading-6">kathrynokelly@gmail.com</p>
         <p>Dublin, Ireland</p>
       </div>
       <div
-        class="flex md:flex-col w-full md:w-44 justify-around text-xs md:text-left mt-8 md:mt-0 text-gray-light"
+        class="flex md:flex-col w-full md:w-44 justify-around fontRegular text-xxs md:text-left mt-8 md:mt-0 text-gray-light"
       >
-        <p>@2021 {{ getfooterText ? shortName : longName }}</p>
-        <p>Designed by EJ</p>
+        <p class="leading-6">
+          @2021 {{ getfooterText ? shortName : longName }}
+        </p>
+        <p class="leading-6">Designed by EJ</p>
       </div>
     </div>
   </div>
