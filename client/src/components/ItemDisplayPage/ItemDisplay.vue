@@ -5,12 +5,12 @@
       <div class="w-11/12 flex justify-between">
         <div class="flex items-center text-gray-500">
           <router-link
-            class="routerLink border-b-2 border-transparent text-gray-500 py-3 cursor-pointer"
+            class="routerLink fontRegular border-b-2 border-transparent text-gray-500 py-3 cursor-pointer"
             to="/shop"
             >Collection</router-link
           >
-          <div class="px-8">/</div>
-          <p>{{ item.name }}</p>
+          <div class="px-8 fontRegular">/</div>
+          <p class="fontRegular">{{ item.name }}</p>
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           <p class="text-sm text-gray-500">{{ item.description }}</p>
 
           <div class="flex justify-between w-full mt-10 md:mt-20 pb-5">
-            <label class="uppercase text-xs font-bold">Color</label>
+            <p class="fontRegular">Color</p>
             <select v-model="colourSelected" class="displaySelect">
               <option v-for="col in item.colourArr" :key="col" :value="col">
                 {{ col }}
@@ -59,7 +59,7 @@
             </select>
           </div>
           <div class="flex justify-between w-full mt-5 pb-5">
-            <label class="uppercase text-xs font-bold">Quantity</label>
+            <p class="fontRegular">Quantity</p>
             <select v-model="quantityChosen" class="displaySelect">
               <option v-for="num in quantityValues" :key="num" :value="num">
                 {{ num }}
@@ -71,7 +71,7 @@
             <button
               :class="{ disable: !colourSelected || !quantityChosen }"
               @click="addItemToCart(item)"
-              class="btn-green btn-lrg mt-10"
+              class="btn-green btn-lrg mt-10 fontRegular"
             >
               Add To Basket
             </button>

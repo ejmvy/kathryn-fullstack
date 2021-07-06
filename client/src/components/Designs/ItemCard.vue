@@ -8,7 +8,7 @@
         <div
           class="hoverBtn absolute w-80 h-48 opacity-0 flex justify-center items-center"
         >
-          <button class="btn-white">View</button>
+          <button class="btn-white fontRegular">View</button>
         </div>
         <img
           class="w-full h-48 cursor-pointer imgBorder"
@@ -16,13 +16,17 @@
         />
       </div>
     </router-link>
-    <div class="p-3 pb-1 text-left w-full">
+    <div
+      class="cardDescription p-3 pb-1 text-left flex flex-col justify-between w-full"
+    >
       <div class="pb-3">
-        <h2 class="mb-3 text-lg">{{ displayItem.name }}</h2>
-        <h3 class="pt-1 text-gray-dark text-sm">
+        <h3 class="fontRegular mb-3 text-sm">{{ displayItem.name }}</h3>
+        <h3 class="fontRegular py-1 text-gray-dark">
           {{ displayItem.description }}
         </h3>
-        <p class="pt-1 text-xs text-gray-500">€ {{ displayItem.price }}</p>
+        <p class="fontRegular text-xs text-gray-500">
+          € {{ displayItem.price }}
+        </p>
       </div>
       <div class="flex pb-5 pt-3">
         <div
@@ -44,7 +48,7 @@
       <div
         class="flex justify-between items-center border-t border-gray-light pt-1"
       >
-        <p class="text-xs uppercase font-bold text-green-dark">Quick Add</p>
+        <p class="fontRegular text-green-dark">Quick Add</p>
         <div
           @click="addItemToCart(displayItem)"
           class="bg-transparant cursor-pointer p-2 hover:bg-gray-100 focus:ring-2 rounded-full"
@@ -147,5 +151,9 @@ export default {
 
 .hoverBtn:hover {
   opacity: 1;
+}
+
+.cardDescription {
+  height: 220px;
 }
 </style>

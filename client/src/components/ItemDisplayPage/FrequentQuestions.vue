@@ -8,7 +8,7 @@
         :key="question"
       >
         <div class="flex items-center w-full justify-between mt-8">
-          <div class="questionTitle">{{ question.title }}</div>
+          <div class="fontRegular">{{ question.title }}</div>
           <Svg
             @click="question.answerShow = !question.answerShow"
             :class="{ rotateArrow: question.answerShow }"

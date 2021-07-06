@@ -8,7 +8,7 @@
       >
         <div v-for="(link, idx) in navInfo" :key="idx">
           <li
-            class="pb-3"
+            class="pb-3 fontRegular"
             :class="{ activeClass: link.active }"
             @click="changeImages(link)"
           >

@@ -8,7 +8,9 @@
       class="flex flex-col order-last md:order-first items-center text-center relative -top-10 md:top-0 w-11/12 md:-right-5 p-8 md:flex-1 md:w-40 z-10 bg-white shadow-xl"
     >
       <div>
-        <h1 class="text-left text-lg pb-2 mb-5 border-b border-gray-200">
+        <h1
+          class="fontRegular text-left text-sm pb-2 mb-5 border-b border-gray-200"
+        >
           {{ displayCollection.title }}
         </h1>
         <p class="text-xs tracking-wider text-left leading-5 text-gray-500">

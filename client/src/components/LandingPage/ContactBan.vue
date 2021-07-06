@@ -10,7 +10,7 @@
       </div>
     </div>
     <router-link to="/contact">
-      <button class="btn-black btn-lrg">Contact Us</button>
+      <button class="btn-black btn-lrg fontRegular">Contact Us</button>
     </router-link>
   </div>
 </template>
