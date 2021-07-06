@@ -83,6 +83,15 @@ export default {
   color: #2c3e50;
 }
 
+.fontRegular {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  /* line-height: 1.875rem; */
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 .indexMain {
   transition: all 1s ease;
   position: fixed;
@@ -127,6 +136,8 @@ h1 {
 
 button {
   transition: all 0.3s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
 }
 
 button:hover {
