@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="w-full min-h-screen bg-gray-200">
-        <div class="w-full md:w-2/3 md:m-auto md:mb-10">
+        <div class="w-full md:w-2/3 lg:w-1/2 xl:w-1/3 md:m-auto md:mb-10">
           <AddressDetails class="slowShow" v-if="getPaymentStep == 1">
           </AddressDetails>
           <ConfirmOrder
