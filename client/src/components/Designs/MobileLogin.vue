@@ -2,17 +2,19 @@
   <div class="h-screen w-full overflow-hidden bg-green-light">
     <router-link to="/">
       <Svg
-        class="absolute left-0 mt-8 ml-3"
+        class="absolute left-0 mt-10 ml-3"
         :svgColour="'white'"
         :svg="homeSvg"
       ></Svg>
     </router-link>
+
     <div
-      class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-6"
+      class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-8"
       v-if="!toLogin"
     >
       <p class="logo text-white text-5xl">KC</p>
       <form
+        data-aos="fade-up"
         class="flex items-center justify-center flex-col h-full w-4/5 text-center px-0"
       >
         <h5 class="text-white uppercase text-sm">Create Account</h5>
@@ -70,12 +72,14 @@
         </button>
       </div>
     </div>
+
     <div
-      class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-6"
+      class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-8"
       v-if="toLogin"
     >
       <p class="logo text-white text-5xl">KC</p>
       <form
+        data-aos="fade-up"
         class="flex items-center justify-center flex-col h-full w-4/5 text-center px-0 text-white"
       >
         <h5 class="text-white uppercase">Sign in</h5>
@@ -244,7 +248,7 @@ span {
 }
 
 .smallHeight {
-  height: 350px;
+  height: 330px;
 }
 
 .largeHeight {
