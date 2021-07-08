@@ -2,7 +2,7 @@
   <div class="h-screen w-full overflow-hidden bg-green-light">
     <router-link to="/">
       <Svg
-        class="absolute left-0 m-2"
+        class="absolute left-0 mt-8 ml-3"
         :svgColour="'white'"
         :svg="homeSvg"
       ></Svg>
@@ -11,11 +11,11 @@
       class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-6"
       v-if="!toLogin"
     >
-      <img class="w-20 h-20" src="https://i.ibb.co/wBkvvKz/owl.png" />
+      <p class="logo text-white text-5xl">KC</p>
       <form
         class="flex items-center justify-center flex-col h-full w-4/5 text-center px-0"
       >
-        <h5 class="text-white uppercase">Create Account</h5>
+        <h5 class="text-white uppercase text-sm">Create Account</h5>
         <input
           class="loginInput mobileInput"
           placeholder="Name"
@@ -54,7 +54,10 @@
           Sign Up
         </button>
       </form>
-      <div class="otherRoute">
+      <div
+        class="otherRoute"
+        :class="windowHeight > 600 ? 'largeHeight' : 'smallHeight'"
+      >
         <h5 class="text-xs uppercase text-green-dark mt-5">
           Already have an Account?
         </h5>
@@ -71,7 +74,7 @@
       class="flex flex-col justify-around items-center text-white w-full h-4/5 pt-6"
       v-if="toLogin"
     >
-      <img class="w-20 h-20" src="https://i.ibb.co/wBkvvKz/owl.png" />
+      <p class="logo text-white text-5xl">KC</p>
       <form
         class="flex items-center justify-center flex-col h-full w-4/5 text-center px-0 text-white"
       >
@@ -109,7 +112,10 @@
           Sign In
         </button>
       </form>
-      <div class="otherRoute">
+      <div
+        class="otherRoute"
+        :class="windowHeight > 600 ? 'largeHeight' : 'smallHeight'"
+      >
         <h5 class="text-xs uppercase mt-5 text-green-dark">New Friend?</h5>
         <button
           class="btn-green btn-sm mt-3"
@@ -146,6 +152,7 @@ export default {
         password: "",
       },
       viewUserPassword: false,
+      windowHeight: 0,
     };
   },
   methods: {
@@ -202,6 +209,10 @@ export default {
     },
   },
 
+  created() {
+    this.windowHeight = window.innerHeight;
+  },
+
   components: {
     Svg,
     PasswordHideSvg,
@@ -222,7 +233,6 @@ span {
 }
 
 .otherRoute {
-  height: 400px;
   width: 140%;
   border-radius: 50%;
   background: white;
@@ -231,5 +241,13 @@ span {
   position: absolute;
   overflow: hidden;
   bottom: -40%;
+}
+
+.smallHeight {
+  height: 350px;
+}
+
+.largeHeight {
+  height: 400px;
 }
 </style>
