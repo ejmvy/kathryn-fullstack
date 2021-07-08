@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="flex justify-center cartBtn">
-        <router-link to="/cart" class="absolute bottom-5">
+        <router-link to="/cart" class="absolute bottom-12">
           <button
             class="btn-white btn-lrg fontRegular"
             :class="{ disable: !getCartLength }"
