@@ -9,7 +9,7 @@
         class="w-11/12 mt-4 md:pt-5 pb-3 flex justify-between text-gray-dark border-b border-gray-300"
       >
         <div class="flex">
-          <p class="fontRegular">Collections</p>
+          <p class="fontRegular uppercase">Collections</p>
           <div class="px-5 fontRegular">/</div>
           <select
             class="fontRegular bg-transparent cursor-pointer"
@@ -115,6 +115,10 @@ export default {
 .routerLink:hover {
   border-bottom: 2px solid rgba(32, 72, 88, 0.7);
   transform: scale(1.1);
+}
+
+select {
+  -webkit-appearance: menulist;
 }
 
 select:focus {

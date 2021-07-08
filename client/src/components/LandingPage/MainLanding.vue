@@ -1,6 +1,8 @@
 <template>
   <section class="pb-10">
-    <h1 class="homeTitle text-2xl sm:text-4xl mt-5">Kathryn Ceramics</h1>
+    <h1 class="homeTitle uppercase text-2xl sm:text-4xl mt-5">
+      Kathryn Ceramics
+    </h1>
 
     <div class="mainLanding">
       <nav
