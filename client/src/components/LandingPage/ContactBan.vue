@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col items-center py-14 bg-green-white">
     <h1 class="text-2xl md:text-4xl font-bold">Keep in Touch ?</h1>
-    <div class="flex justify-between m-auto w-1/3 my-14">
+    <div class="flex justify-between m-auto w-1/2 md:w-1/3 my-14">
       <div v-for="icon in logos" :key="icon">
         <img
           :src="require(`../../assets/${icon}`)"
