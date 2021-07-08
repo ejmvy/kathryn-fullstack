@@ -18,7 +18,10 @@
           ></Svg>
         </div>
         <div :class="{ answerArea: question.answerShow }">
-          <p class="answerText text-xs mt-5 text-left opacity-0">
+          <p
+            class="answerText text-xs mt-5 text-left opacity-0"
+            :class="windowWidth > 600 ? 'webHeight' : 'mobileHeight'"
+          >
             {{ question.answer }}
           </p>
         </div>
@@ -36,6 +39,7 @@ export default {
     return {
       arrowSvg: "M19 9l-7 7-7-7",
       titleText: "Frequently Asked Questions",
+      windowWidth: 0,
 
       questions: [
         {
@@ -59,6 +63,10 @@ export default {
       ],
     };
   },
+  created() {
+    this.windowWidth = window.innerWidth;
+    console.log(this.windowWidth);
+  },
   components: {
     Svg,
     TitleDesign,
@@ -71,16 +79,20 @@ export default {
   transition: all 0.2s ease;
 }
 .answerArea .answerText {
-  /* padding-top: 10px; */
   opacity: 1;
   padding-bottom: 20px;
-  height: 65px;
   transition: opacity 0.3s 0.1s, height 0.3s;
 }
 
+.answerArea .mobileHeight {
+  height: 120px;
+}
+
+.answerArea .webHeight {
+  height: 65px;
+}
+
 .answerText {
-  /* text-align: left; */
-  /* opacity: 0; */
   height: 0;
   transition: opacity 0.3s, height 0.3s 0.1s;
 }
