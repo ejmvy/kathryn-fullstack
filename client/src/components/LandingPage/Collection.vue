@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center w-full pb-16 bg-gray-100 mt-20">
-    <div class="w-full flex flex-col items-center py-16">
+    <div class="w-full flex flex-col items-center py-16 overflow-hidden">
       <TitleDesign class="mb-20" :title="titleText"></TitleDesign>
       <LeftCollectionComponent
         :displayCollection="dishCollection"
