@@ -17,9 +17,10 @@
 
 <script>
 export default {
-  data() {
+  setup() {
+    const logos = ["icons/insta.png", "icons/fb.png", "icons/etsy.png"];
     return {
-      logos: ["icons/insta.png", "icons/fb.png", "icons/etsy.png"],
+      logos,
     };
   },
 };

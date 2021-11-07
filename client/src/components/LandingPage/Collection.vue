@@ -27,53 +27,65 @@ import TitleDesign from "../Designs/TitleDesign.vue";
 import LeftCollectionComponent from "../Designs/LeftCollectionComponent.vue";
 import RightCollectionComponent from "../Designs/RightCollectionComponent.vue";
 export default {
-  data() {
-    return {
-      titleText: "The Collection",
-      dishes: "dishes",
-      mugs: "mugs",
-      bowls: "bowls",
-      misc: "misc",
-      dishCollection: {
-        title: "Dishes",
-        longText:
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-        shortText:
-          "There are many variations of passages of Lorem Ipsum available.",
-        img: "latestDesigns/dish1.jpeg",
-      },
-      bowlCollection: {
-        title: "Bowls",
-        longText:
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-        shortText:
-          "There are many variations of passages of Lorem Ipsum available.",
-        img: "latestDesigns/bowl1.jpeg",
-      },
-      mugCollection: {
-        title: "Mugs",
-        longText:
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-        shortText:
-          "There are many variations of passages of Lorem Ipsum available.",
-        img: "latestDesigns/mug3.jpeg",
-      },
-      miscCollection: {
-        title: "Misc",
-        longText:
-          "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
-        shortText:
-          "There are many variations of passages of Lorem Ipsum available.",
-        img: "latestDesigns/misc1.jpeg",
-      },
-    };
-  },
   components: {
     TitleDesign,
     LeftCollectionComponent,
     RightCollectionComponent,
   },
+  setup() {
+    const titleText = "The Collection";
+    const dishes = "dishes";
+    const mugs = "mugs";
+    const bowls = "bowls";
+    const misc = "misc";
+
+    const dishCollection = {
+      title: "Dishes",
+      longText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+      shortText:
+        "There are many variations of passages of Lorem Ipsum available.",
+      img: "latestDesigns/dish1.jpeg",
+    };
+
+    const bowlCollection = {
+      title: "Bowls",
+      longText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+      shortText:
+        "There are many variations of passages of Lorem Ipsum available.",
+      img: "latestDesigns/bowl1.jpeg",
+    };
+
+    const mugCollection = {
+      title: "Mugs",
+      longText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+      shortText:
+        "There are many variations of passages of Lorem Ipsum available.",
+      img: "latestDesigns/mug3.jpeg",
+    };
+
+    const miscCollection = {
+      title: "Misc",
+      longText:
+        "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.",
+      shortText:
+        "There are many variations of passages of Lorem Ipsum available.",
+      img: "latestDesigns/misc1.jpeg",
+    };
+
+    return {
+      titleText,
+      dishes,
+      mugs,
+      bowls,
+      misc,
+      dishCollection,
+      bowlCollection,
+      mugCollection,
+      miscCollection,
+    };
+  },
 };
 </script>
-
-<style scoped></style>

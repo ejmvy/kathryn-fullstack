@@ -82,40 +82,51 @@
 </template>
 
 <script>
+import { ref, computed } from "vue";
+import Store from "@/store";
 import CartPopup from "../../views/CartPopup.vue";
 export default {
   props: ["addShadow"],
-  data() {
-    return {
-      cartOpen: false,
-      openNav: false,
-      hamburgerOpen: false,
-    };
-  },
-
-  methods: {
-    openCart() {
-      this.cartOpen = !this.cartOpen;
-    },
-    showUser() {
-      // console.log(`user logged: `, this.$store.state.user);
-    },
-    openNavPanel() {
-      this.openNav = !this.openNav;
-      this.hamburgerOpen = !this.hamburgerOpen;
-    },
-  },
-  computed: {
-    checkLoggedIn() {
-      console.log(`LOGGED IN: ${this.$store.getters.isAuthenticated}`);
-      return this.$store.getters.isAuthenticated;
-    },
-    getCartLength() {
-      return this.$store.getters["cart/quantity"];
-    },
-  },
   components: {
     CartPopup,
+  },
+  setup() {
+    let cartOpen = ref(false);
+    let openNav = ref(false);
+    let hamburgerOpen = ref(false);
+
+    /**
+     *  @summary Opens / closes cart on user click
+     */
+    const openCart = () => (cartOpen.value = !cartOpen.value);
+
+    /**
+     *  @summary Opens / closes dropdown nav panel & transitions hamburger
+     */
+    const openNavPanel = () => {
+      openNav.value = !openNav.value;
+      hamburgerOpen.value = !hamburgerOpen.value;
+    };
+
+    /**
+     *  @summary Checks if user is logged in & authenticated
+     */
+    const checkLoggedIn = computed(() => Store.getters.isAuthenticated);
+
+    /**
+     *  @summary Returns number of items in cart for nav cart icon
+     */
+    const getCartLength = computed(() => Store.getters["cart/quantity"]);
+
+    return {
+      cartOpen,
+      openNav,
+      hamburgerOpen,
+      openCart,
+      openNavPanel,
+      checkLoggedIn,
+      getCartLength,
+    };
   },
 };
 </script>

@@ -26,23 +26,29 @@
 </template>
 
 <script>
+import { computed, ref } from "vue";
 export default {
-  data() {
+  setup() {
+    const windowWidth = ref(window.innerWidth);
+    const longName = "Kathryn Ceramics";
+    const shortName = "KC";
+
+    /**
+     *  @summary Changes footer text depending on space
+     */
+    const getfooterText = computed(() => windowWidth.value <= 600);
+
+    // window.addEventListener("rezise", () => {
+    //   windowWidth.value = window.innerWidth;
+    //   console.log("window1:" + windowWidth.value);
+    // });
+
     return {
-      windowWidth: window.innerWidth,
-      longName: "Kathryn Ceramics",
-      shortName: "KC",
+      windowWidth,
+      longName,
+      shortName,
+      getfooterText,
     };
-  },
-  mounted() {
-    window.addEventListener("rezise", () => {
-      this.windowWidth = window.innerWidth;
-    });
-  },
-  computed: {
-    getfooterText() {
-      return this.windowWidth <= 600;
-    },
   },
 };
 </script>

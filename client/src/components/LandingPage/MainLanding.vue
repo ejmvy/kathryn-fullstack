@@ -87,28 +87,36 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
-  data() {
-    return {
-      showImages: "favourites",
-      navInfo: [
-        { name: "Favourites", map: "favourites", active: true },
-        { name: "Tableware", map: "tableware", active: false },
-        { name: "Cup Sets", map: "cups", active: false },
-        { name: "Garden Ideas", map: "garden", active: false },
-        { name: "Miscellaneous", map: "misc", active: false },
-      ],
-    };
-  },
-  methods: {
-    changeImages(link) {
-      console.log(link);
-      this.navInfo.forEach((val) =>
+  setup() {
+    const showImages = ref("favourites");
+    const navInfo = [
+      { name: "Favourites", map: "favourites", active: true },
+      { name: "Tableware", map: "tableware", active: false },
+      { name: "Cup Sets", map: "cups", active: false },
+      { name: "Garden Ideas", map: "garden", active: false },
+      { name: "Miscellaneous", map: "misc", active: false },
+    ];
+
+    /**
+     *  @summary Changes slideup images on user click of navInfo li
+     *  @description links the 'map' name to showImages to display current selection
+     *  @param { Obj } item in navInfo array
+     */
+    const changeImages = (link) => {
+      navInfo.forEach((val) =>
         val.name == link.name ? (val.active = true) : (val.active = false)
       );
 
-      this.showImages = link.map;
-    },
+      showImages.value = link.map;
+    };
+
+    return {
+      showImages,
+      navInfo,
+      changeImages,
+    };
   },
 };
 </script>
